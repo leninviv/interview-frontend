@@ -1,0 +1,71 @@
+<div class="row" [hidden]="logged">
+    <div class="col-md-12">
+        <div class="card card-user">
+          <div class="card-header">
+            <h5 class="card-title">Please <a routerLink="/login" routerLinkActive="active">Log In</a></h5>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div class="row" [hidden]="!logged">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Update Department</h4>
+      </div>
+
+      <div class="card-body">
+        <form (ngSubmit)="update()">
+          <div class="row">
+            <div class="col-md-12 px-1">
+                <div class="form-group">
+                    <label>Enterprise</label>
+                    <select name="idEnterprise" class="form-control" required [(ngModel)]="idEnterprise">
+                        <option value="">- Seleccione</option>
+                        <option value="{{record.id}}" *ngFor="let record of listadoEnterprises">{{record.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 px-1">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" required placeholder="Name" name="name" [(ngModel)]="name">
+              </div>
+            </div>
+            <div class="col-md-12 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description</label>
+                  <input type="text" class="form-control" required placeholder="Description" name="description" [(ngModel)]="description">
+                </div>
+            </div>
+            <div class="col-md-12 pl-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Phone</label>
+                <input type="text" class="form-control" required placeholder="Phone" name="phone" [(ngModel)]="phone">
+              </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Status</label> <br>
+                    <input type="checkbox" class="form-control" name="status" [(ngModel)]="status" [checked]="status">
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" [hidden]="loading" class="btn btn-primary btn-round">Update</button>
+              <div class="spinner-border" role="status" [hidden]="!loading">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-danger" [hidden]="!alert" >
+            {{message}}
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

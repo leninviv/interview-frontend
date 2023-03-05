@@ -1,0 +1,66 @@
+<div class="row" [hidden]="logged">
+    <div class="col-md-12">
+        <div class="card card-user">
+          <div class="card-header">
+            <h5 class="card-title">Please <a routerLink="/login" routerLinkActive="active">Log In</a></h5>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div class="row" [hidden]="!logged">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Update User</h4>
+      </div>
+
+      <div class="card-body">
+        <form (ngSubmit)="update()">
+          <div class="row">
+            <div class="col-md-12 px-1">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" required placeholder="Username" name="username" [(ngModel)]="username">
+              </div>
+            </div>
+            <div class="col-md-12 pl-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Password</label>
+                <input type="password" class="form-control" required placeholder="Password" [(ngModel)]="password">
+              </div>
+            </div>
+            <div class="col-md-12 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Rol</label>
+                  <select name="rol" class="form-control" required [(ngModel)]="rol">
+                    <option value="">- Seleccione</option>  
+                    <option value="0">Admin</option>
+                    <option value="1">User</option>
+                  </select>
+                </div>
+            </div>
+            <div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Status</label> <br>
+                  <input type="checkbox" class="form-control" name="status" [(ngModel)]="status" [checked]="status">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" [hidden]="loading" class="btn btn-primary btn-round">Update</button>
+              <div class="spinner-border" role="status" [hidden]="!loading">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-danger" [hidden]="!alert" >
+            {{message}}
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
